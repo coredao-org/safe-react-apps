@@ -49,7 +49,7 @@ jobs:
             mkdir ~/tmp | true
             sudo mkdir /usr/share/nginx/safe-apps/${{env.STATIC_PATH}} | true
           scp: |
-            ${{env.STATIC_PATH}}.tar.gz => /home/ec2-user/tmp
+            ./apps/tx-builder/${{env.STATIC_PATH}}.tar.gz => /home/ec2-user/tmp
           last_ssh: |
             cd tmp
             tar -xzvf ${{env.STATIC_PATH}}.tar.gz
