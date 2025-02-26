@@ -34,8 +34,9 @@ jobs:
 
       - name: Tar
         run: |
+          mv build dist
           tar -czvf ${{env.STATIC_PATH}}.tar.gz ./dist
-        working-directory: packages/${{env.STATIC_PATH}}
+        working-directory: apps/${{env.STATIC_PATH}}
 
       - name: Deploy
         uses: cross-the-world/ssh-scp-ssh-pipelines@latest

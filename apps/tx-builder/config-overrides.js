@@ -26,7 +26,6 @@ module.exports = {
         Buffer: ['buffer', 'Buffer'],
       }),
     ])
-    config.output.path = path.resolve(__dirname, 'dist')
 
     // https://github.com/facebook/create-react-app/issues/11924
     config.ignoreWarnings = [/to parse source map/i]
