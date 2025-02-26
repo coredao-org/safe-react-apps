@@ -42,4 +42,4 @@ cypress/downloads
 
 # intellij ide files
 .idea
-
+deploy.sh

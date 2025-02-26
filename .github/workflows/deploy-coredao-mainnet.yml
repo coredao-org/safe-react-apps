@@ -1,0 +1,59 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Deploy to Testnet
+
+on:
+  push:
+    branches: ['coredao/mainnet']
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+env:
+  REPO_NAME_ALPHANUMERIC: safereactapps
+  HUSKY: 0
+  STATIC_PATH: tx-builder
+  PROJECT_NAME: safe-react-apps
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+
+jobs:
+  deploy-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 18.0.0
+
+      - name: Build
+        run: |
+          yarn
+          yarn workspace tx-builder build
+
+      - name: Tar
+        run: |
+          tar -czvf ${{env.STATIC_PATH}}.tar.gz ./dist
+        working-directory: packages/${{env.STATIC_PATH}}
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAT }}
+        with:
+          tag_name: ${{ env.RELEASE_VERSION}}
+          release_name: ${{ env.RELEASE_VERSION}}
+          body: |
+          draft: false
+          prerelease: false
+          files: |
+            ./apps/${{env.STATIC_PATH}}/${{env.STATIC_PATH}}.tar.gz
+
+      - name: Repository Dispatch
+        uses: peter-evans/repository-dispatch@v2
+        with:
+          token: ${{ secrets.PAT }}
+          repository: coredao-org/coredao-infra
+          event-type: explorer-front-deploy
+          client-payload: '{"ref": "${{ github.ref }}", "sha": "${{ github.sha }}", "project_name": "${{env.PROJECT_NAME}}", "static_path": "${{env.STATIC_PATH}}"}'

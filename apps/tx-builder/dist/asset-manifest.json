@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.js": "/static/js/main.882e6990.js",
+    "static/js/752.f0a5d14e.chunk.js": "/static/js/752.f0a5d14e.chunk.js",
+    "static/js/415.f4ce7328.chunk.js": "/static/js/415.f4ce7328.chunk.js",
+    "static/media/DMSansRegular.woff2": "/static/media/DMSansRegular.99b8e0b20a45ca4d73bf.woff2",
+    "static/media/DMSans700.woff2": "/static/media/DMSans700.d5ac740f6f0cf65a6193.woff2",
+    "static/media/new-batch-light.svg": "/static/media/new-batch-light.39ac56f1b78e2ebe436412698b4a83b1.svg",
+    "static/media/new-batch-dark.svg": "/static/media/new-batch-dark.8aec75a35b8357e09429cf577b7f57d2.svg",
+    "static/media/empty-library-light.svg": "/static/media/empty-library-light.7a0c408ce3ccd6c5ff51e046a8cb953b.svg",
+    "static/media/empty-library-dark.svg": "/static/media/empty-library-dark.9cca49175220659ab618343e1429237d.svg",
+    "static/media/success-batch.svg": "/static/media/success-batch.6c51434686bacf8ccd6b0eb26f61e77d.svg",
+    "static/media/arrowtotheblock.svg": "/static/media/arrowtotheblock.e310722176174400b9fbb3588a629951.svg",
+    "index.html": "/index.html",
+    "main.882e6990.js.map": "/static/js/main.882e6990.js.map",
+    "752.f0a5d14e.chunk.js.map": "/static/js/752.f0a5d14e.chunk.js.map",
+    "415.f4ce7328.chunk.js.map": "/static/js/415.f4ce7328.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.882e6990.js"
+  ]
+}

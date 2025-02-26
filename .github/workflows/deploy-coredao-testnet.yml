@@ -1,0 +1,62 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Deploy to Testnet
+
+on:
+  push:
+    branches: ['coredao/testnet']
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+env:
+  REPO_NAME_ALPHANUMERIC: safereactapps
+  HUSKY: 0
+  STATIC_PATH: tx-builder
+  PROJECT_NAME: safe-react-apps
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+
+jobs:
+  deploy-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 18.0.0
+
+      - name: Build
+        run: |
+          yarn
+          yarn workspace tx-builder build
+
+      - name: Tar
+        run: |
+          tar -czvf ${{env.STATIC_PATH}}.tar.gz ./dist
+        working-directory: packages/${{env.STATIC_PATH}}
+
+      - name: Deploy
+        uses: cross-the-world/ssh-scp-ssh-pipelines@latest
+        with:
+          host: ${{ secrets.TEST_HOST }}
+          user: ${{ secrets.TEST_HOST }}
+          key: ${{ secrets.TEST_HOST }}
+          connect_timeout: 10s
+          first_ssh: |
+            mkdir ~/tmp | true
+            sudo mkdir /usr/share/nginx/safe-apps/${{env.STATIC_PATH}} | true
+          scp: |
+            ${{env.STATIC_PATH}}.tar.gz => /home/ec2-user/tmp
+          last_ssh: |
+            cd tmp
+            tar -xzvf ${{env.STATIC_PATH}}.tar.gz
+            sudo cp -rf /home/ec2-user/tmp/dist/* /usr/share/nginx/safe-apps/${{env.STATIC_PATH}}
+            rm -rf /home/ec2-user/tmp/dist
+            rm ${{env.STATIC_PATH}}.tar.gz
+
+      - name: Clean
+        run: |
+          rm -rf dist
+          rm ${{env.STATIC_PATH}}.tar.gz

@@ -1,0 +1,20 @@
+diff --git a/node_modules/@safe-global/safe-gateway-typescript-sdk/dist/config.d.ts b/node_modules/@safe-global/safe-gateway-typescript-sdk/dist/config.d.ts
+index 493c34e..ea578f6 100644
+--- a/node_modules/@safe-global/safe-gateway-typescript-sdk/dist/config.d.ts
++++ b/node_modules/@safe-global/safe-gateway-typescript-sdk/dist/config.d.ts
+@@ -1 +1 @@
+-export declare const DEFAULT_BASE_URL = "https://safe-client.safe.global";
++export declare const DEFAULT_BASE_URL = "";
+diff --git a/node_modules/@safe-global/safe-gateway-typescript-sdk/dist/config.js b/node_modules/@safe-global/safe-gateway-typescript-sdk/dist/config.js
+index 506c164..ae0f231 100644
+--- a/node_modules/@safe-global/safe-gateway-typescript-sdk/dist/config.js
++++ b/node_modules/@safe-global/safe-gateway-typescript-sdk/dist/config.js
+@@ -1,5 +1,4 @@
+-"use strict";
+-Object.defineProperty(exports, "__esModule", { value: true });
+-exports.DEFAULT_BASE_URL = void 0;
+-exports.DEFAULT_BASE_URL = 'https://safe-client.safe.global';
++Object.defineProperty(exports, '__esModule', { value: true })
++exports.DEFAULT_BASE_URL = void 0
++exports.DEFAULT_BASE_URL = ''
+ //# sourceMappingURL=config.js.map
